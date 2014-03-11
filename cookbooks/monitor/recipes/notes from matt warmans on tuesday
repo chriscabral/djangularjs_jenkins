@@ -1,0 +1,104 @@
+We have 2 cloud accounts
+
+1) Managed cloud $80 premium for each VM on production.
+2) They will log in and fix problems. 
+3) Other cloud is "core" which is unmanaged. 
+ = 80*12 = managed account has extra cost. 
+
+As of right now:
+* All non-production to core. 
+* And in managed and all production servers. (3 non-production, qa app, qa database, qa harvester)
+	(yum updates fails)
+
+4) 32,000 = data infrastructure cost. 12,000 a month in saving switching to dedicated servers.
+5) Research is for transient machines.
+6) performance = staging.
+7) servers saved images
+* daily backups
+* adhoc backups for every new server
+8) Flow of main screen.
+* create server button.
+* server naming standard document in confluence. 
+* Use password safe. 
+* use centos 6.4 (always) * or Ubuntu 12.04 LTS
+* Now picking flavor (use to be standard) now we can choose Performance 1,2, and standard
+* Performance 2 is db. 
+* New Harvester machine is performance 2
+* Always never touch network but PublicNet ServiceNet (dot-3 is created for use at NBA. )
+* Region Chicago, Dallas distater recovery
+* dot-3 192.168.168.m nic card for vertica.
+
+Naming Convetion for images
+Named templates use a naming conventions (T for template-OS-USAGE(APP-DB)-Environment(Monitor-QA))
+OR
+servername(dev-vertica)-od-TS
+
+Provision
+login
+create
+yum update.
+yum update look at package list. 
+add rabbit and mysql to exclude list. 
+Inventory Server templates contains list of pre-installed packages. (add to inventory list, with installed items)
+reboot
+Failed to Band.
+Rack space different than AWS, shutdown. Take an on demand image and delete the server. 
+
+9) Operation Scripts (inside of dev-application)
+* The script is called newuser. (in opsgithub repo)
+* chown -R root:root 755 for /var/scripts
+* misc <- contains newuser.sh
+* Matt creates a sybolic link to /userlocal/sbin newuser -> /var/scripts/misc/newuser.sh (7)
+newuser, there is almost always a -h option.
+
+10) we don't delete there files in the delftpuser
+11) delftpuser
+12) Fresh desk, gets sent an ftp email. 
+13) Rackspace is a great resource, they will stay on the phone with you. 
+14) MyRackspace each device has a 6 nimber code + fw1 = db1(master),db2(replica),db3(performance)
+
+15) Create loadbalancer.
+* Least Connections
+* Add nodes (or wait to add nodes)
+* Builds a load balancer
+* If there is an error on the port we have to delete and add back.
+* Optional Features (health monitoring, disable if unhealthy)
+* HTTP get status response or body regex.
+* Health monitoring will not work for us because we use connect.
+* No connection throttling.
+* Session persistence on only for dashboard
+* No error page http health check, maintenance page. 
+16) ssl, generated needed ssl certificate and private key for all our environments
+* have all keys
+* CSR certictate signing request, supply that when you fill it out at webform. 
+17) Tomcat procedure. is in all Matt's notes. 
+18) Allow secure and in secure. -> always redirect to secure. 
+19) to do midday deployment. 
+20) Fix NLP deploy script. 
+
+21) my.rackspace
+* Network Policies (adminnbadev => )
+22) contact support if you can hit the place directory but not through the load balancer.
+23) opening ports is standard fare.
+24) not ajax.
+25) 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
